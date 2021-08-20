@@ -1,5 +1,6 @@
 ﻿using iroutePrueba.Dao;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace iroutePrueba.BOImpl
 {
@@ -13,9 +14,9 @@ namespace iroutePrueba.BOImpl
             this.objClienteDao = new ClienteDao(options);
         }
 
-        public object consultaCliente(int id)
+        public object consultaCliente(String strIdentificacion)
         {
-            return this.objClienteDao.find(id);
+            return this.objClienteDao.findCliente(strIdentificacion);
         }
     }
 }

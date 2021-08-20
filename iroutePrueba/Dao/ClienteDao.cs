@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using sistema_proveedor_api.MODEL;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace iroutePrueba.Dao
 {
@@ -46,6 +49,24 @@ namespace iroutePrueba.Dao
         {
             this.context.clientes.Update(objCliente);
             this.context.SaveChanges();
+        }
+
+
+        internal object findCliente(string strIdentificacion)
+        {
+
+            List<Clientes> lsClientes=null;
+            //Si el tipo de identificacion es null o vacio trae toda la lista
+            if (String.IsNullOrEmpty(strIdentificacion))
+            {
+                lsClientes = context.clientes.ToList();
+            }
+            else
+            {
+                lsClientes = context.clientes.Where(cliente=> cliente.identificacion==strIdentificacion).ToList();
+            }
+
+            return lsClientes;
         }
     }
 }
