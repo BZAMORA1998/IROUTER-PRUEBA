@@ -74,5 +74,17 @@ namespace iroutePrueba.Dao
 
             return lsClientes;
         }
+
+        /**
+       * @author Bryan Zamora
+       * @desciption Busca el cliente por identificación
+       * @param strIdentificacion
+       *
+       */
+        internal int cantidadIdentificacion(string strIdentificacion)
+        {
+            int intCount= context.clientes.Where(cliente => cliente.identificacion == strIdentificacion).Count();
+            return intCount;
+        }
     }
 }

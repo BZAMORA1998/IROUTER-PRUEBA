@@ -52,6 +52,44 @@ namespace iroutePrueba.BOImpl
             return lsConsultaClientesDTO;
         }
 
+        internal object crearCliente(CrearClientesDTO objClienteDTO)
+        {
+            //Valida campo primer nombre requerido
+            if (String.IsNullOrEmpty(objClienteDTO.primerNombre))
+                throw new BOException(CampoRequerido("Primer Nombre"));
+
+            //Valida campo apellidos requerido
+            if (String.IsNullOrEmpty(objClienteDTO.apellidos))
+                throw new BOException(CampoRequerido("Apellidos"));
+
+            //Valida campo apellidos requerido
+            if (String.IsNullOrEmpty(objClienteDTO.identificacion))
+                throw new BOException(CampoRequerido("Identificacion"));
+
+            if (String.IsNullOrEmpty(objClienteDTO.mail))
+                throw new BOException(CampoRequerido("Mail"));
+
+            int intCantIdentificacion = this.objClienteDao.cantidadIdentificacion(objClienteDTO.identificacion);
+
+            //Si es diferente de null y la lista esta vacia salta la validacion
+            if (intCantIdentificacion > 0)
+                throw new BOException("Ya existe un cliente con dicha identificación.");
+
+            Clientes objCliente = new Clientes();
+            objCliente.primerNombre = objClienteDTO.primerNombre;
+            objCliente.segundoNombre = objClienteDTO.segundoNombre;
+            objCliente.apellidos = objClienteDTO.apellidos;
+            objCliente.correo = objClienteDTO.mail;
+            objCliente.identificacion = objClienteDTO.identificacion;
+            objCliente.estado = true;
+            this.objClienteDao.add(objCliente);
+
+            Dictionary<string, Object> diccResult = new Dictionary<string, Object>();
+            diccResult.Add("procesoExitoso", true);
+            diccResult.Add("id", objCliente.id);
+            return diccResult;
+        }
+
         /**
         * @author Bryan Zamora
         * @desciption Inactiva el cliente

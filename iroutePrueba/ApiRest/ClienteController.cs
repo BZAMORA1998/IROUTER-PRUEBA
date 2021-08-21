@@ -1,6 +1,8 @@
 ﻿using iroutePrueba.BOImpl;
 using iroutePrueba.Dao;
+using iroutePrueba.Dto;
 using iroutePrueba.DTO;
+using iroutePrueba.MODEL;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -16,6 +18,19 @@ namespace iroutePrueba.Controllers
         public ClienteController(DbContextOptions<MyDBContext> options)
         {
             this.objClienteBOImpl = new ClienteBOImpl(options);
+        }
+
+        [HttpPost()]
+        public Object crearCliente([FromBody] CrearClientesDTO objCliente)
+        {
+            try
+            {
+                return this.objClienteBOImpl.crearCliente(objCliente);
+            }
+            catch (Exception e)
+            {
+                return new ResponseError(e.Message);
+            }
         }
 
 
