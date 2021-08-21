@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using sistema_proveedor_api.MODEL;
+using iroutePrueba.MODEL;
 
 namespace iroutePrueba.Dao
 {

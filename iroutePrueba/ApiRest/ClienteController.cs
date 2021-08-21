@@ -20,19 +20,15 @@ namespace iroutePrueba.Controllers
 
 
         [HttpGet()]
-        public Object consultaTipoIdentificacion(String identificacion)
+        public Object findCliente(String identificacion)
         {
             try
             {
-                return new Response200("ok", this.objClienteBOImpl.consultaCliente(identificacion));
-            }
-            catch (BOException e)
-            {
-                return new ResponseError(400, e.Message, e.Data);
+                return this.objClienteBOImpl.findCliente(identificacion);
             }
             catch (Exception e)
             {
-                return new ResponseError(500, e.Message, e.Data);
+                return new ResponseError(e.Message);
             }
         }
     }

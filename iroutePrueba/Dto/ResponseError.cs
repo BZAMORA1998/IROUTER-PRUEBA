@@ -7,22 +7,16 @@ namespace iroutePrueba.DTO
 {
     public class ResponseError
     {
-        private int code;
-        private bool success;
-        private string message;
-        private Object errordata;
+        private bool procesoExitoso;
+        private string mensaje;
 
-        public ResponseError(int code, string message, object errordata)
+        public ResponseError(string message)
         {
-            this.code = code;
-            this.success = false;
-            this.message = message;
-            this.errordata = errordata;
+            this.procesoExitoso = false;
+            this.mensaje = message;
         }
 
-        public int Code { get => code; set => code = value; }
-        public bool Success { get => success; set => success = value; }
-        public string Message { get => message; set => message = value; }
-        public object Errordata { get => errordata; set => errordata = value; }
+        public bool ProcesoExitoso { get => procesoExitoso; set => procesoExitoso = value; }
+        public string Mensaje { get => mensaje; set => mensaje = value; }
     }
 }

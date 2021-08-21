@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace sistema_proveedor_api.MODEL
+namespace iroutePrueba.MODEL
 {
     [Table("tbl_clientes")]
     public class Clientes

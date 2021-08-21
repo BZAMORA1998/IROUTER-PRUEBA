@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using sistema_proveedor_api.MODEL;
+using iroutePrueba.MODEL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,7 +52,7 @@ namespace iroutePrueba.Dao
         }
 
 
-        internal object findCliente(string strIdentificacion)
+        internal List<Clientes> findCliente(string strIdentificacion)
         {
 
             List<Clientes> lsClientes=null;
