@@ -31,5 +31,18 @@ namespace iroutePrueba.Controllers
                 return new ResponseError(e.Message);
             }
         }
+
+        [HttpPut()]
+        public Object inactivarCliente(int id)
+        {
+            try
+            {
+                return this.objClienteBOImpl.inactivarCliente(id);
+            }
+            catch (Exception e)
+            {
+                return new ResponseError(e.Message);
+            }
+        }
     }
 }

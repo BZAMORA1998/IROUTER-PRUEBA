@@ -52,6 +52,12 @@ namespace iroutePrueba.Dao
         }
 
 
+        /**
+        * @author Bryan Zamora
+        * @desciption Busca el cliente por identificación
+        * @param strIdentificacion
+        *
+        */
         internal List<Clientes> findCliente(string strIdentificacion)
         {
 
@@ -59,7 +65,7 @@ namespace iroutePrueba.Dao
             //Si el tipo de identificacion es null o vacio trae toda la lista
             if (String.IsNullOrEmpty(strIdentificacion))
             {
-                lsClientes = context.clientes.ToList();
+                lsClientes = context.clientes.OrderBy(s => s.apellidos).ToList();
             }
             else
             {

@@ -18,9 +18,20 @@ namespace iroutePrueba.BOImpl
             this.objClienteDao = new ClienteDao(options);
         }
 
+        /**
+       * @author Bryan Zamora
+       * @desciption Busca el cliente por identificación
+       * @param strIdentificacion
+       *
+       */
         public List<ConsultaClientesDTO> findCliente(String strIdentificacion)
         {
             List<Clientes> lsClientes = this.objClienteDao.findCliente(strIdentificacion);
+           
+            //Si es diferente de null y la lista esta vacia salta la validacion
+            if (!String.IsNullOrEmpty(strIdentificacion) && lsClientes.Count==0)
+                throw new BOException("No existe cliente con dicha identificación.");
+
             ConsultaClientesDTO objConsultaClientesDTO = null;
             List<ConsultaClientesDTO> lsConsultaClientesDTO = new List<ConsultaClientesDTO>();
 
@@ -40,5 +51,41 @@ namespace iroutePrueba.BOImpl
 
             return lsConsultaClientesDTO;
         }
+
+        /**
+        * @author Bryan Zamora
+        * @desciption Inactiva el cliente
+        * @param id
+        *
+        */
+        internal object inactivarCliente(int id)
+        {
+            //Valida campo requerido
+            if (id==null || id==0)
+                throw new BOException(CampoRequerido("ID"));
+
+            Clientes objClientes = this.objClienteDao.find(id);
+
+            //Valida que el cliente exista
+            if (objClientes==null)
+                throw new BOException("El ID del cliente no es válido.");
+
+            //Valida que se encuentre activa
+            if (objClientes.estado==false)
+                throw new BOException("El cliente ya se encuentra inactivo.");
+
+            objClientes.estado = false;
+            this.objClienteDao.update(objClientes);
+
+            Dictionary<string, Object> diccResult = new Dictionary<string, Object>();
+            diccResult.Add("procesoExitoso",true);
+            diccResult.Add("id",id);
+            return diccResult;
+        }
+
+        internal static String CampoRequerido(String strCampo)
+        {
+            return "El campo "+strCampo+" es requerido.";
+        }
     }
-}
+}   
