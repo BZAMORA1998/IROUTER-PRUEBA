@@ -83,7 +83,8 @@ namespace iroutePrueba.Dao
        */
         internal int cantidadIdentificacion(string strIdentificacion)
         {
-            int intCount= context.clientes.Where(cliente => cliente.Identificacion == strIdentificacion).Count();
+            int intCount= context.clientes
+                .Where(cliente => cliente.Identificacion == strIdentificacion).Count();
             return intCount;
         }
     }
