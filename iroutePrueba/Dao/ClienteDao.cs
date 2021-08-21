@@ -65,11 +65,11 @@ namespace iroutePrueba.Dao
             //Si el tipo de identificacion es null o vacio trae toda la lista
             if (String.IsNullOrEmpty(strIdentificacion))
             {
-                lsClientes = context.clientes.OrderBy(s => s.apellidos).ToList();
+                lsClientes = context.clientes.OrderBy(s => s.Apellidos).ToList();
             }
             else
             {
-                lsClientes = context.clientes.Where(cliente=> cliente.identificacion==strIdentificacion).ToList();
+                lsClientes = context.clientes.Where(cliente=> cliente.Identificacion==strIdentificacion).ToList();
             }
 
             return lsClientes;
@@ -83,7 +83,7 @@ namespace iroutePrueba.Dao
        */
         internal int cantidadIdentificacion(string strIdentificacion)
         {
-            int intCount= context.clientes.Where(cliente => cliente.identificacion == strIdentificacion).Count();
+            int intCount= context.clientes.Where(cliente => cliente.Identificacion == strIdentificacion).Count();
             return intCount;
         }
     }

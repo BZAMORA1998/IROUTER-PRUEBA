@@ -12,16 +12,16 @@ namespace iroutePrueba.MODEL
         [Column("id")]
         public int id { get; set; }
         [Column("primer_nombre")]
-        public string primerNombre { get; set; }
+        public string PrimerNombre { get; set; }
         [Column("segundo_nombre")]
-        public string segundoNombre { get; set; }
+        public string SegundoNombre { get; set; }
         [Column("apellidos")]
-        public string apellidos { get; set; }
+        public string Apellidos { get; set; }
         [Column("identificacion")]
-        public string identificacion { get; set; }
+        public string Identificacion { get; set; }
         [Column("correo")]
-        public string correo { get; set; }
+        public string Correo { get; set; }
         [Column("estado")]
-        public bool estado { get; set; }
+        public bool Estado { get; set; }
     }
 }

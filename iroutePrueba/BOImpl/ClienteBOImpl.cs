@@ -30,7 +30,7 @@ namespace iroutePrueba.BOImpl
            
             //Si es diferente de null y la lista esta vacia salta la validacion
             if (!String.IsNullOrEmpty(strIdentificacion) && lsClientes.Count==0)
-                throw new BOException("No existe cliente con dicha identificación.");
+                throw new BOException("La identificación del cliente no es válida.");
 
             ConsultaClientesDTO objConsultaClientesDTO = null;
             List<ConsultaClientesDTO> lsConsultaClientesDTO = new List<ConsultaClientesDTO>();
@@ -39,13 +39,13 @@ namespace iroutePrueba.BOImpl
             {
                 objConsultaClientesDTO = new ConsultaClientesDTO();
                 objConsultaClientesDTO.id = objClientes.id;
-                objConsultaClientesDTO.primerNombre = objClientes.primerNombre;
-                objConsultaClientesDTO.segundoNombre = objClientes.segundoNombre;
-                objConsultaClientesDTO.apellidos = objClientes.apellidos;
-                objConsultaClientesDTO.identificacion = objClientes.identificacion;
-                objConsultaClientesDTO.mail = objClientes.correo;
-                objConsultaClientesDTO.estado = objClientes.estado != null && objClientes.estado == true ? 1 : 0;
-                objConsultaClientesDTO.estadoDesc = objClientes.estado != null && objClientes.estado == true ? "Activo" : "Inactivo";
+                objConsultaClientesDTO.primerNombre = objClientes.PrimerNombre;
+                objConsultaClientesDTO.segundoNombre = objClientes.SegundoNombre;
+                objConsultaClientesDTO.apellidos = objClientes.Apellidos;
+                objConsultaClientesDTO.identificacion = objClientes.Identificacion;
+                objConsultaClientesDTO.mail = objClientes.Correo;
+                objConsultaClientesDTO.estado = objClientes.Estado != null && objClientes.Estado == true ? 1 : 0;
+                objConsultaClientesDTO.estadoDesc = objClientes.Estado != null && objClientes.Estado == true ? "Activo" : "Inactivo";
                 lsConsultaClientesDTO.Add(objConsultaClientesDTO);
             }
 
@@ -76,12 +76,12 @@ namespace iroutePrueba.BOImpl
                 throw new BOException("Ya existe un cliente con dicha identificación.");
 
             Clientes objCliente = new Clientes();
-            objCliente.primerNombre = objClienteDTO.primerNombre;
-            objCliente.segundoNombre = objClienteDTO.segundoNombre;
-            objCliente.apellidos = objClienteDTO.apellidos;
-            objCliente.correo = objClienteDTO.mail;
-            objCliente.identificacion = objClienteDTO.identificacion;
-            objCliente.estado = true;
+            objCliente.PrimerNombre = objClienteDTO.primerNombre;
+            objCliente.SegundoNombre = objClienteDTO.segundoNombre;
+            objCliente.Apellidos = objClienteDTO.apellidos;
+            objCliente.Correo = objClienteDTO.mail;
+            objCliente.Identificacion = objClienteDTO.identificacion;
+            objCliente.Estado = true;
             this.objClienteDao.add(objCliente);
 
             Dictionary<string, Object> diccResult = new Dictionary<string, Object>();
@@ -109,10 +109,10 @@ namespace iroutePrueba.BOImpl
                 throw new BOException("El ID del cliente no es válido.");
 
             //Valida que se encuentre activa
-            if (objClientes.estado==false)
+            if (objClientes.Estado==false)
                 throw new BOException("El cliente ya se encuentra inactivo.");
 
-            objClientes.estado = false;
+            objClientes.Estado = false;
             this.objClienteDao.update(objClientes);
 
             Dictionary<string, Object> diccResult = new Dictionary<string, Object>();
